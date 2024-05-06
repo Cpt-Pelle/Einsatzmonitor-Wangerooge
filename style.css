@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#livecam {
+    position: absolute;
+    top: 0;
+    right: 45%;
+    bottom: 47%;
+    left: 0; /* Ändere dies entsprechend deinen Anforderungen */
+    overflow: hidden;
+}
+
+#windBoard {
+    position: absolute;
+    top: 54%;
+    right: 0%;
+    bottom: 0;
+    left: 0%; /* Ändere dies entsprechend deinen Anforderungen */
+    overflow: hidden;
+}
+
+#windfinder{
+    position: absolute;
+    top: 0;
+    right: 0%;
+    bottom: 0;
+    left: 55%; /* Ändere dies entsprechend deinen Anforderungen */
+    overflow: hidden;
+}
+
+
+#leftSide {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    bottom: 0;
+    width: 25%;
+    background-color: white; /* Ändere dies auf die gewünschte Farbe */
+}
+
+#rightSide {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 25%;
+    background-color: white; /* Ändere dies auf die gewünschte Farbe */
+}
+
+#topSide {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0%; /* Ändere dies entsprechend deinen Anforderungen */
+    height: 10%; /* Ändere dies auf die gewünschte Höhe */
+    background-color: white; /* Ändere dies auf die gewünschte Farbe */
+}
+
+#weather{
+    position: absolute;
+    top: 0;
+    right: 70%;
+    left: 0%; /* Ändere dies entsprechend deinen Anforderungen */
+    height: 0%; /* Ändere dies auf die gewünschte Höhe */
+
+}
+
+#clock{
+    position: absolute;
+    top: -34%;
+    right: 40%;
+    left: 40%; /* Ändere dies entsprechend deinen Anforderungen */
+    height: 0%; /* Ändere dies auf die gewünschte Höhe */
+}
+
+#logo{
+        position: absolute;
+        top: 0%;
+        right: 0%;
+        left: 70%; /* Ändere dies entsprechend deinen Anforderungen */
+        height: 0%; /* Ändere dies auf die gewünschte Höhe */
+}
+
+
+#middle {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    left: 25%;
+    bottom: 0;
+    /*width: 25%; */
+    background-color: white; /* Ändere dies auf die gewünschte Farbe */
+}
+
+#main-beach {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    left: 0%;
+    bottom: 30%;
+    /*width: 25%; */
+    background-color: white; /* Ändere dies auf die gewünschte Farbe */
+}
+
+#west-beach {
+    position: absolute;
+    top: 30%;
+    right: 0;
+    left: 0%;
+    bottom: 0%;
+    background-color: white; /* Ändere dies auf die gewünschte Farbe */
+}

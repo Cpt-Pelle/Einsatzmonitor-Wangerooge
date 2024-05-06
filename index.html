@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dein Einsatzmonitor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="leftSide">
+        <div id="main-beach">
+            <div id="mainSwim-container" style="font-size: 20px;"> </div>
+            <div id="mainHelper" style ="font-size: 20px"></div>
+        </div>
+        <div id="west-beach">
+            <div id="west-container" style="font-size: 20px;"></div>
+            <div id="westHelper" style ="font-size: 20px"></div>
+        </div>
+    </div>
+
+    <div id="topSide">
+
+        <div id="weather">
+            <a class="weatherwidget-io" href="https://forecast7.com/en/53d797d90/wangerooge/" data-label_1="WANGEROOGE" data-label_2="WEATHER" data-icons="Climacons Animated" data-mode="Current" data-days="3" data-theme="original" >WANGEROOGE WEATHER</a>
+            <script>
+                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+            </script>
+        </div>
+
+        <div id="clock" style="text-align:center;padding:1em 0;"> 
+            <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=de&size=large&timezone=Europe%2FBerlin" width="100%" height="140" frameborder="0" seamless></iframe> 
+            <small style="color:gray;">&copy; <a href="https://www.zeitzonenrechner.net/" style="color: gray;">Zeitzonenrechner</a></small> 
+        </div>
+
+        <div id="logo">
+            <img src="static/langLogo.jpg" height="76" width="230">
+        </div>
+    
+    </div>
+    <div id="middle">
+        <div id="livecam"></div>
+
+        
+        <div id="windBoard">
+            <div
+            data-windywidget="map"
+            data-thememode="white"
+            data-spotid="648315"
+            data-appid="widgets_c8f474f16f">
+            </div>
+            <script async="true" data-cfasync="false" type="text/javascript" src="https://windy.app/widget3/windy_map_async.js?v289"></script>
+        </div>
+        
+
+        <div id="windfinder">
+            <script src="https://de.windfinder.com/widget/forecast/js/wangerooge?unit_wave=m&unit_rain=mm&unit_temperature=c&unit_wind=m_s&unit_pressure=hPa&days=2&show_day=1"></script><noscript><a rel="nofollow" href="https://www.windfinder.com/forecast/wangerooge?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-forecast">Wind forecast for Wangerooge</a> provided by <a rel="nofollow" href="https://www.windfinder.com?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-logo">windfinder.com</a></noscript>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="stream.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script>
+        function updateDivContents() {
+
+
+    // Funktion zum Einlesen der Excel-Datei und Aktualisieren der divs
+    function readExcelFile(data) {
+        var workbook = XLSX.read(data, { type: 'binary' });
+        var sheetName = workbook.SheetNames[0];
+        var sheet = workbook.Sheets[sheetName];
+
+        // Zellenwert in das HTML-Div einfügen
+        const today = new Date(Date.now())
+        const day = today.getDate() + 2;
+        const dayString = day.toString();
+        const west = sheet['C2'].v + ": " + sheet['C' + dayString].v;
+
+        const mainSwim = sheet['D2'].v + " Hauptstrand: " + sheet['D' + dayString].v;
+        document.getElementById('west-container').innerHTML = ' ' + west;
+        document.getElementById('mainSwim-container').innerHTML = ' ' + mainSwim;
+    }
+
+    // Daten aus localStorage abrufen und aktualisieren
+    var storedData = localStorage.getItem('excelData');
+    if (storedData) {
+        readExcelFile(storedData);
+    }
+            var mainShift1Helper1 = localStorage.getItem('mainShift1Helper1');
+            var mainShift1Helper2 = localStorage.getItem('mainShift1Helper2');
+
+            var mainShift2Helper1 = localStorage.getItem('mainShift2Helper1');
+            var mainShift2Helper2 = localStorage.getItem('mainShift2Helper2');
+
+            var eastShift1Helper1 = localStorage.getItem('eastShift1Helper1');
+            var eastShift1Helper2 = localStorage.getItem('eastShift1Helper2');
+
+            var eastShift2Helper1 = localStorage.getItem('eastShift2Helper1');
+            var eastShift2Helper2 = localStorage.getItem('eastShift2Helper2');
+
+            var westHelper1 = localStorage.getItem('westHelper1');
+            var westHelper2 = localStorage.getItem('westHelper2');
+
+
+            /**
+            localStorage.setItem('mainShift1Helper1', mainShift1Helper1);
+            localStorage.setItem('mainShift1Helper2', mainShift1Helper2);
+
+            localStorage.setItem('mainShift2Helper1', mainShift2Helper1);
+            localStorage.setItem('mainShift2Helper2', mainShift2Helper2);
+
+            localStorage.setItem('westHelper1', westHelper1);
+            localStorage.setItem('westHelper2', westHelper2);
+            
+            **/
+
+            document.getElementById('mainHelper').innerHTML = 'Schicht 1: '+ '<br>' +  mainShift1Helper1 + '<br>' + mainShift1Helper2 + '<br>' + 'Schicht 2: '+ '<br>' + mainShift2Helper1 + '<br>' + mainShift2Helper2;
+            document.getElementById('westHelper').innerHTML = westHelper1 + '<br>' + westHelper2;
+}
+
+setInterval(updateDivContents, 20000);
+
+
+    </script>
+    
+     
+</html>

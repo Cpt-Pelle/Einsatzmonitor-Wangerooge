@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optionen - Dein Einsatzmonitor</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* CSS-Anpassungen für die Schichtanzeige */
+        #shifts {
+            display: flex;
+            justify-content: space-between;
+        }
+        .shift {
+            width: 45%; /* 45% Breite für jede Schicht */
+        }
+        #west-strand {
+            width: 45%; /* Abstand zwischen Schicht 1 und Weststrand */
+        }
+    </style>
+</head>
+<body>
+    <div id="startPage">
+        <h1>Option für Marcs Einsatzmonitor</h1>
+        <p>Bitte wählen Sie eine Datei aus:</p>
+        <input type="file" id="fileInput" style="font-size: 18px;"/>
+        <button onclick="handleFileSelectAndColor()">Speichern</button>
+        <p>Gefahr Hauptstrand:</p>
+        <select id="colorSelectMainBeach">
+            <option value="white">Weiß</option>
+            <option value="yellow">Gelb</option>
+            <option value="red">Rot</option>
+        </select>
+
+        <p>Gefahr Weststrand:</p>
+        <select id="colorSelectWestBeach">
+            <option value="white">Weiß</option>
+            <option value="yellow">Gelb</option>
+            <option value="red">Rot</option>
+        </select>
+    </div>
+    <div id="shifts">
+        <div class="shift">
+            <h3>Hauptstrand</h3>
+            <h4>Schicht 1:</h4>
+            <h4>Hauptturm</h4>
+            <label for="Main-shift1-Helper1-name">Helfer1:</label>
+            <input type="text" id="Main-shift1-Helper1-name" name="Main-shift1-Helper1-name" placeholder="Helfer 1 Name"> <br>
+            <label for="Main-shift1-Helper2-name">Helfer2:</label>
+            <input type="text" id="Main-shift1-Helper2-name" name="Main-shift1-Helper2-name" placeholder="Helfer 2 Name">
+            <h4>Ostturm</h4>
+            <label for="East-shift1-Helper1-name">Helfer1:</label>
+            <input type="text" id="East-shift1-Helper1-name" name="East-shift1-Helper1-name" placeholder="Helfe 1 Name"> <br>
+            <label for="East-shift1-Helper2-name">Helfer2:</label>
+            <input type="text" id="East-shift1-Helper2-name" name="East-shift1-Helper2-name" placeholder="Helfer 2 Name">
+        </div>
+        <div class="shift">
+            <h3>Hauptstrand</h3>
+            <h4>Schicht 2</h4>
+            <h4>Hauptturm</h4>
+            <label for="Main-shift2-Helper1-name">Helfer1:</label>
+            <input type="text" id="Main-shift2-Helper1-name" name="Main-shift2-Helper1-name" placeholder="Helfer 1 Name"> <br>
+            <label for="Main-shift2-Helper2-name">Helfer2:</label>
+            <input type="text" id="Main-shift2-Helper2-name" name="Main-shift2-Helper2-name" placeholder="Helfer 2 Name">
+            <h4>Ostturm</h4>
+            <label for="East-shift2-Helper1-name">Helfer1:</label>
+            <input type="text" id="East-shift2-Helper1-name" name="East-shift2-Helper1-name" placeholder="Helfer 1 Name"> <br>
+            <label for="East-shift2-Helper2-name">Helfer2:</label>
+            <input type="text" id="East-shift2-Helper2-name" name="East-shift2-Helper2-name" placeholder="Helfer 2 Name">
+        </div>
+        <div id="west-strand">
+            <h3>Weststrand</h3>
+            <label for="west-Helper1-name">Helfer1:</label>
+            <input type="text" id="west-Helper1-name" name="west-Helper1-name" placeholder="Helfer 1 Name"> <br>
+            <label for="west-Helper2-name">Helfer2:</label>
+            <input type="text" id="west-Helper2-name" name="west-Helper2-name" placeholder="Helfer 2 Name">
+        </div>
+    </div>
+    <button onclick="saveHelperData()">Speichern</button>
+
+    <p>Support bei Felix Fuchs f.a.fuchs@web.de</p>
+
+    <script>
+        function handleFileSelectAndColor() {
+            var fileInput = document.getElementById('fileInput');
+            var colorSelectMain = document.getElementById('colorSelectMainBeach');
+            var colorSelectWest = document.getElementById('colorSelectWestBeach');
+            
+            if (fileInput.files.length === 1) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var data = e.target.result;
+                    localStorage.setItem('excelData', data);
+
+                    var selectedColorMain = colorSelectMain.options[colorSelectMain.selectedIndex].value;
+                    localStorage.setItem('selectedColorMain', selectedColorMain);
+
+                    var selectedColorWest = colorSelectWest.options[colorSelectWest.selectedIndex].value;
+                    localStorage.setItem('selectedColorWest', selectedColorWest);
+
+                };
+
+                reader.readAsBinaryString(fileInput.files[0]);
+            }
+        }
+    </script>
+    <script>
+        function saveHelperData() {
+            var westHelper1 = document.getElementById('west-Helper1-name').value;
+            var westHelper2 = document.getElementById('west-Helper2-name').value;
+
+            var mainShift1Helper1 = document.getElementById('Main-shift1-Helper1-name').value;
+            var mainShift1Helper2 = document.getElementById('Main-shift1-Helper2-name').value;
+
+            var mainShift2Helper1 = document.getElementById('Main-shift2-Helper1-name').value;
+            var mainShift2Helper2 = document.getElementById('Main-shift2-Helper2-name').value;
+
+            var eastShift1Helper1 = document.getElementById('East-shift1-Helper1-name').value;
+            var eastShift1Helper2 = document.getElementById('East-shift1-Helper2-name').value;
+
+            var eastShift2Helper1 = document.getElementById('East-shift2-Helper1-name').value;
+            var eastShift2Helper2 = document.getElementById('East-shift2-Helper2-name').value;
+    
+            localStorage.setItem('mainShift1Helper1', mainShift1Helper1);
+            localStorage.setItem('mainShift1Helper2', mainShift1Helper2);
+
+            localStorage.setItem('mainShift2Helper1', mainShift2Helper1);
+            localStorage.setItem('mainShift2Helper2', mainShift2Helper2);
+
+            localStorage.setItem('eastShift1Helper1', eastShift1Helper1);
+            localStorage.setItem('eastShift1Helper2', eastShift1Helper2);
+
+            localStorage.setItem('eastShift2Helper1', eastShift2Helper1);
+            localStorage.setItem('eastShift2Helper2', eastShift2Helper2);
+
+            localStorage.setItem('westHelper1', westHelper1);
+            localStorage.setItem('westHelper2', westHelper2);
+            
+        }
+    </script>
+    
+</body>
+</html>
