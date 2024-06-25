@@ -97,8 +97,8 @@ body {
 #main-beach {
     position: absolute;
     top: 10%;
-    right: 0;
-    left: 0%;
+    right: 76%;
+    left: 1%;
     bottom: 30%;
     /*width: 25%; */
     background-color: white; /* Ändere dies auf die gewünschte Farbe */
@@ -106,7 +106,7 @@ body {
 
 #west-beach {
     position: absolute;
-    top: 30%;
+    top: 50%;
     right: 0;
     left: 0%;
     bottom: 0%;

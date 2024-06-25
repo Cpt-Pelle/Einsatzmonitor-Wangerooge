@@ -8,13 +8,49 @@
 </head>
 <body>
     <div id="leftSide">
+
+        
         <div id="main-beach">
-            <div id="mainSwim-container" style="font-size: 20px;"> </div>
-            <div id="mainHelper" style ="font-size: 20px"></div>
+            <style type="text/css">
+                .tg  {border-collapse:collapse;border-spacing:0;}
+                .tg td{font-family:Arial, sans-serif;font-size:20px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+                .tg th{font-family:Arial, sans-serif;font-size:20px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+                .tg .tg-6eq8{color:#333333}
+                .tg .tg-a0td{font-size:100%}
+                </style>
+                <table class="tg">
+                  <tr>
+                    <th class="tg-a0td" colspan="5"><div id="mainSwim-container" style="font-size: 20px;"> </div></th>
+                  </tr>
+                  <tr>
+                    <td class="tg-031e" colspan="2">Schicht 1</td>
+                    <td class="tg-6eq8" rowspan="4"></td>
+                    <td class="tg-031e" colspan="2">Schicht 2</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-031e">Hauptstrand</td>
+                    <td class="tg-031e">Oststrand</td>
+                    <td class="tg-031e">Hauptstrand</td>
+                    <td class="tg-031e">Oststrand</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-031e"><div id="shiftOneMainHelperOne" style="font-size: 15px;"> </div></td>
+                    <td class="tg-031e"><div id="shiftOneEastHelperOne" style="font-size: 15px;"> </div></td>
+                    <td class="tg-031e"><div id="shiftTwoMainHelperOne" style="font-size: 15px;"> </div></td>
+                    <td class="tg-031e"><div id="shiftTwoEastHelperOne" style="font-size: 15px;"> </div></td>
+                  </tr>
+                  <tr>
+                    <td class="tg-031e"><div id="shiftOneMainHelperTwo" style="font-size: 15px;"> </div></td>
+                    <td class="tg-031e"><div id="shiftOneEastHelperTwo" style="font-size: 15px;"> </div></td>
+                    <td class="tg-031e"><div id="shiftTwoMainHelperTwo" style="font-size: 15px;"> </div></td>
+                    <td class="tg-031e"><div id="shiftTwoEastHelperTwo" style="font-size: 15px;"> </div></td>
+                  </tr>
+                </table>
+                
+            
         </div>
         <div id="west-beach">
-            <div id="west-container" style="font-size: 20px;"></div>
-            <div id="westHelper" style ="font-size: 20px"></div>
+
         </div>
     </div>
 
@@ -76,9 +112,9 @@
         const dayString = day.toString();
         const west = sheet['C2'].v + ": " + sheet['C' + dayString].v;
 
-        const mainSwim = sheet['D2'].v + " Hauptstrand: " + sheet['D' + dayString].v;
-        document.getElementById('west-container').innerHTML = ' ' + west;
+        const mainSwim = sheet['C2'].v + ": " + sheet['C' + dayString].v;
         document.getElementById('mainSwim-container').innerHTML = ' ' + mainSwim;
+
     }
 
     // Daten aus localStorage abrufen und aktualisieren
@@ -88,6 +124,7 @@
     }
             var mainShift1Helper1 = localStorage.getItem('mainShift1Helper1');
             var mainShift1Helper2 = localStorage.getItem('mainShift1Helper2');
+            console.log(mainShift1Helper2);
 
             var mainShift2Helper1 = localStorage.getItem('mainShift2Helper1');
             var mainShift2Helper2 = localStorage.getItem('mainShift2Helper2');
@@ -114,8 +151,21 @@
             
             **/
 
-            document.getElementById('mainHelper').innerHTML = 'Schicht 1: '+ '<br>' +  mainShift1Helper1 + '<br>' + mainShift1Helper2 + '<br>' + 'Schicht 2: '+ '<br>' + mainShift2Helper1 + '<br>' + mainShift2Helper2;
-            document.getElementById('westHelper').innerHTML = westHelper1 + '<br>' + westHelper2;
+            document.getElementById('shiftOneMainHelperOne').innerHTML = mainShift1Helper1;
+            document.getElementById('shiftOneMainHelperTwo').innerHTML = mainShift1Helper2;
+
+            document.getElementById('shiftTwoMainHelperOne').innerHTML = mainShift2Helper1;
+            document.getElementById('shiftTwoMainHelperTwo').innerHTML = mainShift2Helper2;
+
+
+            document.getElementById('shiftOneEastHelperOne').innerHTML = eastShift1Helper1;
+            document.getElementById('shiftOneEastHelperTwo').innerHTML = eastShift1Helper2;
+
+            document.getElementById('shiftTwoEastHelperOne').innerHTML = eastShift2Helper1;
+            document.getElementById('shiftTwoEastHelperTwo').innerHTML = eastShift2Helper2;
+
+
+            
 }
 
 setInterval(updateDivContents, 20000);
